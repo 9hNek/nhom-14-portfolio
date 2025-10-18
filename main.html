@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhóm Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Circles */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        body::before {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 100;
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .greeting {
+            padding: 1.5rem 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .greeting h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .greeting p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            font-weight: 300;
+        }
+
+        /* Card Container */
+        .card-container {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Member Card */
+        .member-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+            text-align: center;
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .member-card:hover::before {
+            left: 100%;
+        }
+
+        .member-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(102, 126, 234, 0.5);
+        }
+
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1.8rem;
+            object-fit: cover;
+            border: 6px solid #667eea;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .member-card:hover .member-image {
+            border-color: #764ba2;
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(118, 75, 162, 0.4);
+        }
+
+        .member-name {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .member-role {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .visit-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            position: relative;
+            z-index: 1;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+        }
+
+        .visit-btn:hover {
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        /* Navigation Arrows */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            color: #667eea;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow:hover {
+            background: rgba(255, 255, 255, 0.98);
+            border: 2px solid rgba(102, 126, 234, 0.8);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            color: #764ba2;
+        }
+
+        .arrow-left {
+            left: -75px;
+        }
+
+        .arrow-right {
+            right: -75px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 100;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.95rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card-container {
+                max-width: 380px;
+            }
+
+            .arrow-left {
+                left: -65px;
+            }
+
+            .arrow-right {
+                right: -65px;
+            }
+
+            .member-image {
+                width: 170px;
+                height: 170px;
+            }
+
+            .greeting h2 {
+                font-size: 1.6rem;
+            }
+
+            header h1 {
+                font-size: 1.7rem;
+            }
+
+            .arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .arrow-left {
+                left: -55px;
+            }
+
+            .arrow-right {
+                right: -55px;
+            }
+
+            .card-container {
+                max-width: 300px;
+            }
+
+            .member-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .member-name {
+                font-size: 1.6rem;
+            }
+
+            .greeting h2 {
+                font-size: 1.4rem;
+            }
+
+            .greeting p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎓 Portfolio của nhóm 14</h1>
+    </header>
+
+    <main>
+        <div class="greeting">
+            <h2>Kính chào Thầy/Cô!</h2>
+            <p>Chúng em xin trân trọng giới thiệu các thành viên trong nhóm</p>
+        </div>
+
+        <div class="card-container">
+            <button class="arrow arrow-left" onclick="previousMember()">‹</button>
+            
+            <div class="member-card" id="memberCard" onclick="visitPortfolio()">
+                <img src="https://via.placeholder.com/200" alt="Member Photo" class="member-image" id="memberImage">
+                <h2 class="member-name" id="memberName">Nguyễn Văn A</h2>
+                <p class="member-role" id="memberRole">Thành viên</p>
+                <a href="#" class="visit-btn" id="portfolioLink">Xem Portfolio</a>
+            </div>
+
+            <button class="arrow arrow-right" onclick="nextMember()">›</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nhóm Portfolio | Đồ án giữa kì môn học lập trình web</p>
+    </footer>
+
+    <script>
+        const members = [
+            {
+                name: "Nguyễn Tấn Thành Tài",
+                role: "Thành viên",
+                image: "22H1120079_NguyễnTấnThànhTài_final_online/assets/images/avatar.jpg",
+                portfolio: "22H1120079_NguyễnTấnThànhTài_final_online/index.html"
+            },
+            {
+                name: "Lê Thành Chính",
+                role: "Thành viên",
+                image: "052205009303_LêThànhChính/assets/img/about-perfil.png",
+                portfolio: "052205009303_LêThànhChính/index.html"
+            },
+            {
+                name: "Phan Chí Vĩ",
+                role: "Thành viên",
+                image: "054205006077_PhanChíVĩ_Gk/chivi.png",
+                portfolio: "054205006077_PhanChíVĩ_Gk/index.html"
+            }
+        ];
+        // ==========================================
+
+        let currentIndex = 0;
+
+        function updateCard() {
+            const member = members[currentIndex];
+            document.getElementById('memberName').textContent = member.name;
+            document.getElementById('memberRole').textContent = member.role;
+            document.getElementById('memberImage').src = member.image;
+            document.getElementById('portfolioLink').href = member.portfolio;
+        }
+
+        function nextMember() {
+            currentIndex = (currentIndex + 1) % members.length;
+            updateCard();
+        }
+
+        function previousMember() {
+            currentIndex = (currentIndex - 1 + members.length) % members.length;
+            updateCard();
+        }
+
+        function visitPortfolio() {
+            window.location.href = members[currentIndex].portfolio;
+        }
+
+        // Initialize
+        updateCard();
+    </script>
+</body>
+</html>
