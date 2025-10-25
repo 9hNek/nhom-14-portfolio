@@ -43,7 +43,7 @@
           <div class="info">
             <img
               class="avatar"
-              src="./assets/images/avatar.jpg"
+              src="./avatar.jpg"
               alt="Ảnh chân dung Nguyễn Tấn Thành Tài"
             />
             <p class="lead">Thông tin liên hệ và hồ sơ cơ bản.</p>
@@ -51,6 +51,9 @@
           <div class="info-list">
             <div><strong>Họ tên</strong> Nguyễn Tấn Thành Tài</div>
             <div><strong>Ngày sinh</strong> 08/01/2004</div>
+            <div><strong>Trường</strong> Đại học Giao Thông Vận Tải TPHCM</div>
+            <div><strong>Lớp</strong> CN22CLCC</div>
+
             <div><strong>Email</strong> Taithanhpct2004@gmail.com</div>
             <div><strong>Số điện thoại</strong> 0974705469</div>
             <div>
@@ -78,19 +81,12 @@
             <div><strong>LinkedIn</strong> (đang cập nhật)</div>
           </div>
         </section>
-
-        <section class="card span-4" id="gallery">
-          <h3>Ảnh cá nhân</h3>
-          <div class="gallery">
-            <img src="./assets/images/profile1.jpg" alt="Ảnh cá nhân 1" />
-            <img src="./assets/images/profile2.jpg" alt="Ảnh cá nhân 2" />
-            <img src="./assets/images/profile3.jpg" alt="Ảnh cá nhân 3" />
-            <img src="./assets/images/profile4.jpg" alt="Ảnh cá nhân 4" />
-          </div>
-        </section>
-
-        <section class="card span-12" id="goals">
+<section class="card span-12" id="goals">
           <h3>Mục tiêu nghề nghiệp</h3>
+<div class="info-pair">
+  <img class="info-photo reveal-left" src="./profile1.jpg" alt="Ảnh cá nhân — mục tiêu" />
+  <div class="info-body">
+
           <p>
             <strong>Ngắn hạn:</strong> Phát triển kỹ năng kinh doanh online và
             marketing kỹ thuật số, hiểu cách xây dựng thương hiệu cá nhân và dự
@@ -101,10 +97,17 @@
             dựng sản phẩm, website hoặc ứng dụng riêng, phục vụ kinh doanh hoặc
             phát triển cộng đồng người dùng.
           </p>
-        </section>
+        
+  </div>
+</div>
+</section>
 
         <section class="card span-6" id="hobbies">
           <h3>Sở thích</h3>
+<div class="info-pair">
+  <img class="info-photo reveal-left" src="./profile2.jpg" alt="Ảnh cá nhân — sở thích" />
+  <div class="info-body">
+
           <ul class="hobby-list">
             <li>Đọc sách về phát triển bản thân & công nghệ mới</li>
             <li>Tập gym, duy trì sức khỏe và tinh thần kỷ luật</li>
@@ -114,10 +117,17 @@
               dung
             </li>
           </ul>
-        </section>
+        
+  </div>
+</div>
+</section>
 
         <section class="card span-6" id="skills">
           <h3>Ngôn ngữ & Kỹ năng</h3>
+<div class="info-pair">
+  <img class="info-photo reveal-left" src="./profile3.jpg" alt="Ảnh cá nhân — kỹ năng" />
+  <div class="info-body">
+
           <div class="tag">Kỹ năng lập trình</div>
           <div class="skill">
             <div class="label"><span>HTML/CSS</span><span>90%</span></div>
@@ -148,14 +158,21 @@
             <div class="label"><span>English</span><span>60%</span></div>
             <div class="progress" style="--w: 60%"><span></span></div>
           </div>
-        </section>
+        
+  </div>
+</div>
+</section>
 
         <section class="card span-6 compact" id="awards">
-          <h3>Chứng chỉ • Giải thưởng</h3>
-          <p class="empty-note">Không có</p>
-        </section>
+  <h3>Chứng chỉ • Giải thưởng</h3>
+  <p class="empty-note">Không có</p>
+  <div class="dragon-box">
+    <canvas id="dragonCanvas" aria-hidden="true"></canvas>
+  </div>
+</section>
 
         <section class="card span-6" id="projects">
+  <div class="projects-hero"><canvas id="projectsRings" aria-hidden="true"></canvas></div>
           <h3>Dự án</h3>
           <div class="projects">
             <article class="project">
@@ -258,6 +275,10 @@
 
         <section class="card span-12" id="contact">
           <h3>Liên hệ</h3>
+<div class="info-pair">
+  <img class="info-photo reveal-left" src="./profile4.jpg" alt="Ảnh cá nhân — thông tin" />
+  <div class="info-body">
+
           <div class="contact-list">
             <a href="mailto:Taithanhpct2004@gmail.com">Email</a>
             <a
@@ -273,10 +294,29 @@
               >Facebook</a
             >
           </div>
-        </section>
+        
+  </div>
+</div>
+</section>
       </div>
     </main>
 
     <footer>© 2025 • Nguyễn Tấn Thành Tài</footer>
-  </body>
-</html>
+  
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal, .reveal-left');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: .12});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+
+  <script src="main.js"></script>
+</body></html>
